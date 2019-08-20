@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 
+
 android {
     compileSdkVersion 28
     buildToolsVersion "28.0.3"
@@ -7,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 28
-        versionCode project.ext.versionCodeInt
-        versionName version
+        versionCode 10000
+        versionName "10000"
         consumerProguardFiles 'consumer-proguard-rules.txt'
     }
 
@@ -18,21 +19,21 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'consumer-proguard-rules.txt'
         }
     }
+}
 
-    lintOptions {
-        // we don't always want to use the latest version of the support library
-        disable 'GradleDependency'
-        textOutput 'stdout'
-        textReport System.getenv('CI') == 'true'
-    }
+repositories {
+    mavenCentral()
+    maven { url 'https://maven.google.com' }
+    jcenter()
 }
 
 dependencies {
-    compileOnly 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'io.github.inflationx:viewpump:1.0.0'
+//    compile 'androidx.appcompat:appcompat:1.0.2'
+    compile 'com.android.support:appcompat-v7:28.0.0'
 
-    testImplementation 'androidx.annotation:annotation:1.0.0'
-    testImplementation 'androidx.test:runner:1.1.0'
+//    compile 'io.github.inflationx:viewpump:2.0.3'
+
+    testCompile 'androidx.annotation:annotation:1.0.0'
+    testCompile 'androidx.test:runner:1.1.0'
+    compile project(path: ':viewpump')
 }
-
-apply from: rootProject.file('gradle/deploy.gradle')

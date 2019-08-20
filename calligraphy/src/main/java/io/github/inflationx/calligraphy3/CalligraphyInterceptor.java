@@ -5,6 +5,7 @@ import android.view.View;
 import io.github.inflationx.viewpump.InflateResult;
 import io.github.inflationx.viewpump.Interceptor;
 
+
 public class CalligraphyInterceptor implements Interceptor {
 
     private final Calligraphy calligraphy;
